@@ -119,7 +119,7 @@ public class CharacterController2D : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.name =="EnemyFrog")
+        if (collision.gameObject.tag =="Enemy")
         {
             alive = false;
             m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));

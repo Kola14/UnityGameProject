@@ -5,7 +5,8 @@ using System;
 
 public class EnemyFrogMovement : MonoBehaviour
 {
-    GameObject player, frog;
+    GameObject player;
+    GameObject[] frogs;
     public EnemyController2D controller;
     public Animator animator;
 
@@ -19,7 +20,7 @@ public class EnemyFrogMovement : MonoBehaviour
         controller = GetComponent<EnemyController2D>();
         animator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player");
-        frog = GameObject.FindGameObjectWithTag("Enemy");
+        frogs = GameObject.FindGameObjectsWithTag("Enemy");
     }
 
     void Update()
@@ -44,26 +45,29 @@ public class EnemyFrogMovement : MonoBehaviour
     }
     private IEnumerator Wait()
     {
-        if (controller.isGrounded && jump == false)
+        foreach (GameObject frog in frogs)
         {
-            horizontalMove = 0;
-            yield return new WaitForSeconds(.5f);
-            if (Math.Abs(player.transform.position.x - frog.transform.position.x) < 15)
+            if (controller.isGrounded && jump == false)
             {
-                if (player.transform.position.x > frog.transform.position.x)
+                horizontalMove = 0;
+                yield return new WaitForSeconds(.5f);
+                if (Math.Abs(player.transform.position.x - frog.transform.position.x) < 15)
                 {
-                    horizontalMove = 5 * runSpeed;
+                    if (player.transform.position.x > frog.transform.position.x)
+                    {
+                        horizontalMove = 5 * runSpeed;
+                    }
+                    else
+                    {
+                        horizontalMove = -5 * runSpeed;
+                    }
+                    jump = true;
                 }
                 else
                 {
-                    horizontalMove = -5 * runSpeed;
+                    horizontalMove = 0f;
+                    jump = false;
                 }
-                jump = true;
-            }
-            else
-            {
-                horizontalMove = 0f;
-                jump = false;
             }
         }
     }
