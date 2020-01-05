@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class CharacterController2D : MonoBehaviour
 {
 	[SerializeField] private float m_JumpForce = 400f;							// Amount of force added when the player jumps.
@@ -127,6 +127,10 @@ public class CharacterController2D : MonoBehaviour
             CircleCollider2D col2 = GetComponent<CircleCollider2D>();
             col1.enabled = false;
             col2.enabled = false;
-        }     
+        }   
+        if (collision.gameObject.name == "EndGame")
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
     }
 }
