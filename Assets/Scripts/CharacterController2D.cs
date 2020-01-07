@@ -130,7 +130,7 @@ public class CharacterController2D : MonoBehaviour
         }   
         if (collision.gameObject.name == "EndGame")
         {
-            SceneManager.LoadScene("MainMenu");
+            SceneManager.LoadScene("Level2");
         }
     }
 }
