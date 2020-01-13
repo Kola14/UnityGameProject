@@ -51,7 +51,8 @@ public class EnemyFrogMovement : MonoBehaviour
             {
                 horizontalMove = 0;
                 yield return new WaitForSeconds(.5f);
-                if (Math.Abs(player.transform.position.x - frog.transform.position.x) < 15)
+                if ((Math.Abs(player.transform.position.x - frog.transform.position.x) < 10) &&
+                    (Math.Abs(player.transform.position.y - frog.transform.position.y) < 15))
                 {
                     if (player.transform.position.x > frog.transform.position.x)
                     {

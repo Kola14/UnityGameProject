@@ -20,6 +20,7 @@ public class CharacterController2D : MonoBehaviour
 	private Rigidbody2D m_Rigidbody2D;
 	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 	private Vector3 velocity = Vector3.zero;
+    private int sceneNum = 1;
 
 	private void Awake()
 	{
@@ -130,7 +131,7 @@ public class CharacterController2D : MonoBehaviour
         }   
         if (collision.gameObject.name == "EndGame")
         {
-            SceneManager.LoadScene("Level2");
+            SceneManager.LoadScene(2);
         }
     }
 }
